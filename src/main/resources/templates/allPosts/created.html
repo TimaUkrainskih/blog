@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание нового поста</title>
+    <style>
+        /* Стили для имитации VK */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f3f5; /* Цвет фона, похожий на VK */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center; /* Выравнивание по горизонтали по центру */
+            align-items: center; /* Выравнивание по вертикали по центру */
+            height: 100vh; /* Высота вьюпорта */
+        }
+        form {
+            background-color: #ffffff; /* Цвет фона формы */
+            border-radius: 8px; /* Закругление углов формы */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень формы */
+            padding: 20px; /* Внутренний отступ формы */
+            width: 400px; /* Ширина формы */
+        }
+        label {
+            color: #333333; /* Цвет текста */
+            font-size: 16px; /* Размер шрифта */
+<!--            margin-bottom: px; /* Отступ снизу от метки */-->
+            display: block; /* Делаем метку блочным элементом */
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px; /* Внутренний отступ инпута */
+            border: 1px solid #ccc; /* Граница инпута */
+            border-radius: 4px; /* Закругление углов инпута */
+            margin-bottom: 15px; /* Отступ снизу от поля */
+            box-sizing: border-box; /* Учитываем границы и отступы в общей ширине */
+        }
+         button[type="submit"], a.button {
+            background-color: #3578E5; /* Цвет фона кнопки */
+            color: #ffffff; /* Цвет текста кнопки */
+            border: none; /* Убираем границу кнопки */
+            border-radius: 4px; /* Закругление углов кнопки */
+            padding: 10px 20px; /* Внутренний отступ кнопки */
+            font-size: 16px; /* Размер шрифта кнопки */
+            cursor: pointer; /* Устанавливаем курсор в виде указателя */
+            text-decoration: none; /* Убираем подчеркивание */
+            display: inline-block; /* Размещаем как блочный элемент */
+            margin-bottom: 20px; /* Отступ снизу для разделения от формы */
+        }
+        button[type="submit"]:hover, a.button:hover {
+            background-color: #1e56a0; /* Цвет фона кнопки при наведении */
+        }
+        a {
+            color: #3578E5; /* Цвет ссылки */
+            text-decoration: none; /* Убираем подчеркивание ссылки */
+            font-size: 16px; /* Размер шрифта ссылки */
+            margin-bottom: 20px; /* Отступ снизу для разделения от формы */
+            display: block; /* Делаем ссылку блочным элементом */
+        }
+        a:hover {
+            text-decoration: underline; /* Подчеркиваем ссылку при наведении */
+        }
+         textarea {
+            width: calc(100% - 10px); /* Ширина текстового поля */
+            padding: 8px; /* Внутренний отступ текстового поля */
+            border: 1px solid #ccc; /* Граница текстового поля */
+            border-radius: 4px; /* Закругление углов текстового поля */
+            margin-bottom: 15px; /* Отступ снизу от поля */
+            resize: vertical; /* Разрешаем вертикальное изменение размера поля */
+            min-height: 100px; /* Минимальная высота поля */
+        }
+    </style>
+</head>
+<body>
+
+<form method="post" data-th-acton="@{allPosts/created}">
+    <h1>Создание нового поста</h1>
+    <label for="author">Автор:</label><br>
+    <input type="text" id="author" name="author"><br>
+    <label for="title">Название:</label><br>
+    <input type="text" id="title" name="title"><br>
+    <label for="description">Описание:</label><br>
+    <textarea id="description" name="description"></textarea><br>
+    <button type="submit">Создать</button>
+    <a data-th-href="@{/allPosts/list}" class="button"> К списку</a>
+</form>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новостной блог</title>
+    <style>
+        /* Стили для имитации VK */
+        body {
+            scroll-behavior: smooth;
+            overflow-y: auto;
+            font-family: Arial, sans-serif;
+            background-color: #DCDCDC; /* Цвет фона, похожий на VK */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            height: 100vh; /* Высота вьюпорта */
+            width: 100%; /* Установка ширины на 100% */
+        }
+        .container {
+            text-align: center; /* Выравнивание текста по центру */
+            min-height: 100vh; /* Минимальная высота контейнера - 100% от высоты вьюпорта */
+            width: 90%; /* Увеличиваем ширину контейнера */
+            max-width: 700px; /* Максимальная ширина контейнера */
+            margin: auto; /* Центрирование блока */
+            background-color: #D3D3D3; /* Цвет фона контейнера */
+            border-radius: 8px; /* Закругление углов контейнера */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень контейнера */
+            padding: 20px; /* Внутренний отступ контейнера */
+        }
+        .post {
+            background-color: #D3D3D3; /* Цвет фона поста */
+            border-radius: 8px; /* Закругление углов поста */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень поста */
+            padding: 20px; /* Внутренний отступ поста */
+            margin: 20px auto;
+            text-align: left; /* Выравнивание текста в посте */
+            height: 500px;
+            width: 500px;
+            word-wrap: break-word;
+        }
+        h1 {
+            color: #333333; /* Цвет заголовка */
+            font-size: 24px; /* Размер шрифта заголовка */
+            margin-bottom: 20px; /* Отступ снизу от заголовка */
+        }
+        h2 {
+            color: #333333; /* Цвет заголовка */
+            font-size: 20px; /* Размер шрифта заголовка */
+            margin-bottom: 10px; /* Отступ снизу от заголовка */
+        }
+        p {
+            color: #666666; /* Цвет текста */
+            font-size: 16px; /* Размер шрифта текста */
+            margin-bottom: 10px; /* Отступ снизу от абзаца */
+        }
+        span.author {
+            color: #999999; /* Цвет текста автора */
+        }
+        span.id {
+            color: #999999; /* Цвет текста идентификатора */
+            font-size: 14px; /* Размер шрифта идентификатора */
+        }
+        a {
+            color: #3578E5; /* Цвет ссылки */
+            text-decoration: none; /* Убираем подчеркивание ссылки */
+        }
+        a:hover {
+            text-decoration: underline; /* Подчеркиваем ссылку при наведении */
+            color: #1e56a0; /* Цвет ссылки при наведении */
+        }
+        .vk-link {
+            color: #3578E5; /* Цвет ссылки */
+            text-decoration: none; /* Убираем подчеркивание ссылки */
+            margin-bottom: 20px; /* Добавляем отступ снизу для разделения от контейнера */
+            display: block; /* Делаем ссылку блочным элементом, чтобы она занимала всю доступную ширину */
+
+        }
+        .vk-link:hover {
+            color: #143d73; /* Цвет ссылки VK при наведении */
+        }
+    </style>
+</head>
+<body>
+<a class="vk-link" href="/allPosts/created">Создать новый пост</a>
+<!--<div class="container">-->
+<!--    &lt;!&ndash; Ссылка на главную страницу VK &ndash;&gt;-->
+<!--    <h1>Новостной блог</h1>-->
+<!--    <div id="posts" data-th-each="post : ${posts}">-->
+<!--        <div class="post">-->
+<!--            <h2 data-th-text="${post.title}"></h2>-->
+<!--            <p>Автор: <span class="author" data-th-text="${post.author}"></span></p>-->
+<!--            <p>Описание: <span class="description" data-th-text="${post.description}"></span></p>-->
+<!--            <p>Идентификатор: <span class="id" data-th-text="${post.id}"></span></p>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<div class="container">
+    <!-- Ссылка на главную страницу VK -->
+    <h1>Новостной блог</h1>
+    <div id="posts" data-th-each="post : ${posts}">
+
+            <div class="post">
+                <a data-th-href="@{/allPosts/{postId}(postId=${post.id})}">
+                <h2 data-th-text="${post.title}"></h2>
+                </a>
+                <p>Автор: <span class="author" data-th-text="${post.author}"></span></p>
+                <p>Описание: <span class="description" data-th-text="${post.description}"></span></p>
+                <p>Идентификатор: <span class="id" data-th-text="${post.id}"></span></p>
+            </div>
+
+    </div>
+</div>
+<script>
+    function updateBodyHeight() {
+        // Получаем количество постов
+        var postCount = document.querySelectorAll('.post').length;
+
+        // Вычисляем высоту контейнера с постами
+        var postsContainerHeight = postCount * 540; // Предполагается, что вы знаете высоту каждого поста
+
+        // Устанавливаем высоту тела страницы
+        document.body.style.height = postsContainerHeight + 'px';
+    }
+
+    // Вызываем функцию при загрузке страницы
+    updateBodyHeight();
+</script>
+</body>
+</html>
